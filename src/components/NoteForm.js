@@ -32,7 +32,8 @@ const handleSubmit = e => {
     props.onSubmit({
         id: Math.floor(Math.random() * 10000),
         text: 'example note',
-        time: `${ monthName } ${ date } ${hour}`
+        time: `${ monthName } ${ date } ${hour}`,
+        title: 'Note Title'
     });
 
     setInput('');
@@ -41,7 +42,18 @@ const handleSubmit = e => {
   return (
     
                 <form className='note-form' onSubmit={handleSubmit}>
-                    <input type='text' 
+                    <input type='text'
+                        placeholder='Title'
+                        value={input}
+                        name='title'
+                        className='title-input'
+                        onChange={handleChange}
+                        ref={inputRef}
+                    />
+                    <br/>
+                    <br/>
+                    <textarea type='text'
+                        rows='5'
                         placeholder='Your note...'
                         value={input} 
                         name="text" 

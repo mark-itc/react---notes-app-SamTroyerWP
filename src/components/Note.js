@@ -30,6 +30,8 @@ function Note({notes, completeNote, removeNote, updateNote}) {
     <div className={note.isComplete ? 'note-row complete' : 'note-row'} key={index}>
         
         <div className='note' key={note.id} onClick={() => completeNote(note.id)}>
+            <span className='note-title'>{note.title}</span>
+            <br/>
             {note.text}
             <br/>
             {note.time}

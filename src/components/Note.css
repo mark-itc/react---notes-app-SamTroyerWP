@@ -10,3 +10,8 @@
 .delete-icon {
     cursor: pointer;
 }
+
+.note-title {
+    font-weight: 600;
+    font-size: 26px;
+}
