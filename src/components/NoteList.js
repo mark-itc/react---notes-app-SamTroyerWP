@@ -5,14 +5,17 @@ import './NoteList.css'
 import {Modal, Button} from 'react-bootstrap'
 
 
+
 function NoteList() {
     const [notes, setNotes] = useState([])
-
+   
     const [deleteId, setDeleteId] = useState('')
     const [show, setShow] = useState(false)
-    const handleClose = () => {
-        setShow(false)
-    }
+
+    
+    const handleClose = () => setShow(false)
+    
+
 
     const addNote = note => {
         if(!note.text || /^\s*$/.test(note.text)) {
@@ -22,18 +25,9 @@ function NoteList() {
         const newNotes = [note, ...notes]
 
         setNotes(newNotes)
-        console.log(...notes)
+        
     };
 
-
-    const updateNote = (noteId, newValue) => {
-        if(!newValue.text || /^\s*$/.test(newValue.text)) {
-            return
-        }
-
-        setNotes(prev => prev.map(item => (item.id === noteId ? newValue : item)))
-
-    }
 
     const removeNote = id => {
         setDeleteId(id)
@@ -46,19 +40,9 @@ function NoteList() {
             return newArray.filter(note => note.id !== deleteId)
         })
         setShow(false)
-    }
+    };
 
     
-
-    const completeNote = id => {
-        let updatedNotes = notes.map(note => {
-            if (note.id === id) {
-                note.isComplete = !note.isComplete
-            }
-            return note;
-        });
-        setNotes(updatedNotes)
-    };
 
   return (
     <div>
@@ -76,9 +60,12 @@ function NoteList() {
           </Button>
         </Modal.Footer>
       </Modal>
+      
       <NoteForm onSubmit={addNote} />
       <div className='col'>
-      <Note notes={notes} completeNotes={completeNote} removeNote={removeNote} updateNote={updateNote} />
+        <Note className='note' 
+          notes={notes} 
+          removeNote={removeNote} />
       </div>
     </div>
   )
