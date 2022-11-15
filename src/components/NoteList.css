@@ -1,4 +1,6 @@
-
+.note {
+    cursor:pointer;
+}
 
 .col {
     flex-direction: column;
