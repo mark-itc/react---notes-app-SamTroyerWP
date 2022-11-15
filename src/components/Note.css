@@ -1,0 +1,12 @@
+.note-row {
+    padding: 15px;
+    margin: 0 auto;
+    
+    border: 1px solid black;
+    border-radius: .5rem;
+    max-width: 250px;
+}
+
+.delete-icon {
+    cursor: pointer;
+}
