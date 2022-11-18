@@ -3,18 +3,18 @@ import './NoteForm.css'
 
 
 function NoteForm(props) {
-const [input, setInput] = useState('')
+const [inputText, setInputText] = useState('');
+const [inputTitle, setInputTitle] = useState('');
 
-const inputRef = useRef(null)
 
-useEffect(() => {
-    inputRef.current.focus()
-})
 
-const handleChange = e => {
-    setInput(e.target.value)
+const handleChangeTitle = e => {
+    setInputTitle(e.target.value)
 };
 
+const handleChangeText = e => {
+    setInputText(e.target.value)
+};
 
 
 const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -31,35 +31,34 @@ const handleSubmit = e => {
 
     props.onSubmit({
         id: Math.floor(Math.random() * 10000),
-        text: 'example note',
+        text: inputText,
         time: `${ monthName } ${ date } ${hour}`,
-        title: 'Note Title'
+        title: inputTitle
     });
 
-    setInput('');
+    setInputText('');
+    setInputTitle('');
 };
 
   return (
     
                 <form className='note-form' onSubmit={handleSubmit}>
                     <input type='text'
-                        placeholder='Title'
-                        value={input}
+                        placeholder='Title (optional)'
+                        value={inputTitle}
                         name='title'
                         className='title-input'
-                        onChange={handleChange}
-                        ref={inputRef}
+                        onChange={handleChangeTitle}
                     />
                     <br/>
                     <br/>
                     <textarea type='text'
                         rows='5'
                         placeholder='Your note...'
-                        value={input} 
+                        value={inputText} 
                         name="text" 
                         className='note-input'
-                        onChange={handleChange}
-                        ref={inputRef}
+                        onChange={handleChangeText}
                     />
                 
                 <br/>
