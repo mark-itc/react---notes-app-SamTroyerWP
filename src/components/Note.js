@@ -4,22 +4,22 @@ import {RiCloseCircleLine} from 'react-icons/ri'
 import {Modal, ModalBody, ModalHeader, ModalFooter} from 'react-bootstrap'
 
 
-
 function Note({notes, removeNote}) {
     
-
 const [modal, setModal] = useState(false)
+const [selectedNote, setSelectedNote] = useState(null)
 
-
-const handleModal = () => {
-  setModal(true)
+const expandModal = (note) => {
+  setSelectedNote(note);
+  setModal(true);
 }
+
   return notes.map((note, index) => (
 
     
     <div className='note-row' key={index}>
         
-        <div className='note' key={note.id} onClick={handleModal}>
+        <div className='note' key={note.id} onClick={() => expandModal(note)}>
             <span className='note-title'>{note.title}</span>
             <br/>
             {note.text}
@@ -32,19 +32,16 @@ const handleModal = () => {
             className='delete-icon'
             />
         </div>
-              <Modal
-                show={modal}
-                onHide={() => setModal(false)}
-              
-              >
+              <Modal 
+                show={modal} onHide={() => setModal(false)}>
                 <ModalHeader className="bg-dark text-primary" closeButton>
-                   {note.title} - {note.id}
+                   {selectedNote && selectedNote.title} - {selectedNote && selectedNote.id}
                 </ModalHeader>
                 <ModalBody>
-                  <p>{note.text}</p>
+                  <p>{selectedNote && selectedNote.text}</p>
                 </ModalBody>
                 <ModalFooter>
-                  {note.time}
+                  {selectedNote && selectedNote.time}
                 </ModalFooter>
               </Modal>
       
