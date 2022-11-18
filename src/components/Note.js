@@ -35,7 +35,7 @@ const expandModal = (note) => {
               <Modal 
                 show={modal} onHide={() => setModal(false)}>
                 <ModalHeader className="bg-dark text-primary" closeButton>
-                   {selectedNote && selectedNote.title} - {selectedNote && selectedNote.id}
+                   {selectedNote && selectedNote.title}
                 </ModalHeader>
                 <ModalBody>
                   <p>{selectedNote && selectedNote.text}</p>
